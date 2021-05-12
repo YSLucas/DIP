@@ -35,7 +35,8 @@ def filter_for_loop(txt):
     for letter in range(0, len(txt)):
         try:
             res = txt[letter] + txt[letter + 1]
-            if res != "%_" and res != "_%":     # leesteken + spatie is niet relevant dus die combinaties kunnen eruit
+            # leesteken + spatie is niet relevant dus die combinaties kunnen eruit. "\n" zitten er ook tussen en die kunnen ook weg
+            if res != "%_" and res != "_%" and "\n" not in res: 
                 combinations.append(res)
 
         except:
