@@ -1,5 +1,4 @@
 import numpy
-from numpy.matrixlib.defmatrix import matrix
 from info import *
 
 
@@ -48,23 +47,42 @@ def filter_for_loop(txt):
     """
     combinations = []
     for line in txt:
-        for letter in range(0, len(line)):
+        # eerste letter resulteert altijd in \ufeff, dus die skip ik
+        # Er raken geen combinaties veloren want hij begint zo alsnog bij de eerste letter
+        for letter in range(1, len(line)):  
             try:
                 res = line[letter] + line[letter + 1]
                 # leesteken + spatie is niet relevant dus die combinaties kunnen eruit. "\n" zitten er ook tussen en die kunnen ook weg
-                if res != "%_" and res != "_%" and "\n" not in res: 
-                    combinations.append(res)
-
+                
+                if (res[0] in abc or res[-1] in abc) and (res != "%_" and res != "_%" and "\n" not in res):
+                    combinations.append([res])
             except:
-                pass
+                continue
     
     return combinations
 
 # Reduce
-def reducer():
+def reducer(c):
     """
     """
     matrix = numpy.zeros((28, 28))
+    for combination in c:
+        left, right = combination[0], combination[-1]
+        try:
+            matrix[abc.index(left)][abc.index(right)] += 1
+        except:
+            continue
+    
+    return matrix
+
+def train_matrix(txt):
+    """
+    """
+    matrix = numpy.zeros((28, 28))
+    for line in txt:
+        m = reducer(line)
+        matrix = numpy.add(matrix, m)
+    print(matrix)
 
 def main():
     """
@@ -73,7 +91,11 @@ def main():
     lines_list = mapper_get_lines()
     updated_text = mapper_replace_punct(lines_list, leestekens)
     combi_list = filter_for_loop(updated_text)
-    print(combi_list[0:100])
+
+    trained_matrix = train_matrix(combi_list)
+    result_matrix = reducer(combi_list)
+    # print(result_matrix)
+
     # print(updated_text)
 
 
