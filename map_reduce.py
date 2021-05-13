@@ -1,17 +1,30 @@
 import numpy
+from info import *
 
 
-leestekens = [".", ",", ":", ";", "\'", "\"", "-", "_", "!", "?", "(", ")"]
+# Mappers
+def mapper_get_lines():
+    """
+    
+    """
+    res = []
+    with open("data/train_eng/Moby_Dick11.txt", "r", encoding="utf8") as f:
+        lines = f.readlines()
 
-# Mapper
-def mapper_for_loop(sign):
+        for line in lines:
+            line = line.strip()
+            res.append(line)
+    
+    return res
+
+def mapper_replace_punct(text, sign):
     """
     Replace all punctuation with % and replace spaces with _
 
     @param  sign: leestekens
     @return     : text waar leestekens vervangen zijn
     """
-    with open("data/Moby_Dick.txt", "r", encoding="utf8") as f:
+    with open("data/train_eng/Moby_Dick11.txt", "r", encoding="utf8") as f:
         txt = f.read()
 
         for i in sign:
@@ -48,15 +61,16 @@ def filter_for_loop(txt):
 def reducer():
     """
     """
-    pass
+    matrix = numpy.zeros((28, 28))
 
 def main():
     """
     Main function
     """
+    lines_list = mapper_get_lines()
     tt = mapper_for_loop(leestekens)
     ff = filter_for_loop(tt)
-    print(ff[5:100])
+    # print(ff[5:100])
 
 
 main()
