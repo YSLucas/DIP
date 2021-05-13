@@ -13,7 +13,8 @@ def mapper_get_lines():
 
         for line in lines:
             line = line.strip()
-            res.append(line)
+            if line != "":
+                res.append(line)
     
     return res
 
@@ -24,16 +25,16 @@ def mapper_replace_punct(text, sign):
     @param  sign: leestekens
     @return     : text waar leestekens vervangen zijn
     """
-    with open("data/train_eng/Moby_Dick11.txt", "r", encoding="utf8") as f:
-        txt = f.read()
-
+    res = []
+    for line in text:
         for i in sign:
-            txt = txt.replace(i, "%")
+            line = line.replace(i, "%")
         
-        txt = txt.replace(" ", "_")
-        txt = txt.lower()
+        line = line.replace(" ", "_")
+        line = line.lower()
+        res.append(line)
 
-    return txt
+    return res
 
 
 # Filter
@@ -68,9 +69,9 @@ def main():
     Main function
     """
     lines_list = mapper_get_lines()
-    tt = mapper_for_loop(leestekens)
-    ff = filter_for_loop(tt)
-    # print(ff[5:100])
+    updated_text = mapper_replace_punct(lines_list, leestekens)
+    ff = filter_for_loop(updated_text)
+    print(updated_text)
 
 
 main()
