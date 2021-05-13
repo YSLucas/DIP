@@ -1,4 +1,5 @@
 import numpy
+from numpy.matrixlib.defmatrix import matrix
 from info import *
 
 
@@ -13,7 +14,8 @@ def mapper_get_lines():
 
         for line in lines:
             line = line.strip()
-            res.append(line)
+            if line != "":
+                res.append(line)
     
     return res
 
@@ -24,16 +26,16 @@ def mapper_replace_punct(text, sign):
     @param  sign: leestekens
     @return     : text waar leestekens vervangen zijn
     """
-    with open("data/train_eng/Moby_Dick11.txt", "r", encoding="utf8") as f:
-        txt = f.read()
-
+    res = []
+    for line in text:
         for i in sign:
-            txt = txt.replace(i, "%")
+            line = line.replace(i, "%")
         
-        txt = txt.replace(" ", "_")
-        txt = txt.lower()
+        line = line.replace(" ", "_")
+        line = line.lower()
+        res.append(line)
 
-    return txt
+    return res
 
 
 # Filter
@@ -45,15 +47,16 @@ def filter_for_loop(txt):
     @return    : lijst met combinaties in tekst
     """
     combinations = []
-    for letter in range(0, len(txt)):
-        try:
-            res = txt[letter] + txt[letter + 1]
-            # leesteken + spatie is niet relevant dus die combinaties kunnen eruit. "\n" zitten er ook tussen en die kunnen ook weg
-            if res != "%_" and res != "_%" and "\n" not in res: 
-                combinations.append(res)
+    for line in txt:
+        for letter in range(0, len(line)):
+            try:
+                res = line[letter] + line[letter + 1]
+                # leesteken + spatie is niet relevant dus die combinaties kunnen eruit. "\n" zitten er ook tussen en die kunnen ook weg
+                if res != "%_" and res != "_%" and "\n" not in res: 
+                    combinations.append(res)
 
-        except:
-            print("Filtering done.")
+            except:
+                pass
     
     return combinations
 
@@ -68,9 +71,10 @@ def main():
     Main function
     """
     lines_list = mapper_get_lines()
-    tt = mapper_for_loop(leestekens)
-    ff = filter_for_loop(tt)
-    # print(ff[5:100])
+    updated_text = mapper_replace_punct(lines_list, leestekens)
+    combi_list = filter_for_loop(updated_text)
+    print(combi_list[0:100])
+    # print(updated_text)
 
 
 main()

@@ -1,6 +1,6 @@
 import string
 
-leestekens = [".", ",", ":", ";", "\'", "\"", "-", "_", "!", "?", "(", ")"]
+leestekens = [".", ",", ":", ";", "\'", "\"", "-", "_", "!", "?", "(", ")", "\\"]
 
 abc = list(string.ascii_lowercase)
 abc.extend(["_", "%"])
