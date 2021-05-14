@@ -17,3 +17,5 @@ Python files: <br>
 `Run main.py` <br>
 
 De matrices zijn al getrained. Om zelf de martrices te trainen: un-comment line 41 in het bestand `train_matrx` 
+
+Visuele demonstraties van de functies zijn te zien in `DIP_opdrach_2.html`
