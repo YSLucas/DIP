@@ -11,7 +11,7 @@ def main():
     Main function
     """
 
-    lines_list = mapper_get_lines()
+    lines_list = mapper_get_lines("validation")
     updated_text = mapper_replace_punct(lines_list, leestekens)
     combi_list = filter_validation(updated_text)
 

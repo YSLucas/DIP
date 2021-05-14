@@ -6,9 +6,10 @@ from train_matrx import *
 
 from info import *
 
+LANGUAGES = ['eng', 'nl']
 
 
-def train_matrix(txt):
+def train_matrix(txt, lang):
     """
     """
     matrix = numpy.zeros((28, 28))
@@ -18,12 +19,14 @@ def train_matrix(txt):
     
     chance_m = reducer_chance_matrix(matrix)
 
-    numpy.save("eng_trained", chance_m)
+    numpy.save("trained_matrix/" + lang + "_trained", chance_m)
 
 def train():
 
-    lines_list = mapper_get_lines()
-    updated_text = mapper_replace_punct(lines_list, leestekens)
-    combi_list = filter_training(updated_text)
+    for x in LANGUAGES:
+        path = "train_" + x + "/train_data"
+        lines_list = mapper_get_lines(path)
+        updated_text = mapper_replace_punct(lines_list, leestekens)
+        combi_list = filter_training(updated_text)
 
-    train_matrix(combi_list)
+        train_matrix(combi_list, x)

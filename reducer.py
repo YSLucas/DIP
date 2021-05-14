@@ -35,7 +35,7 @@ def reducer_chance_matrix(m):
 
 def reducer_final(eng_m, nl_m, c):
     """
-    
+    method: https://stackoverflow.com/a/18197422
     @param eng_m: english trained matrix numpy array
     @param nl_m: dutch trained matrix numpy array
     @param c: list van combinaties die voorkomen per zin

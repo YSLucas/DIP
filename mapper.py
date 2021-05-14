@@ -1,12 +1,12 @@
 
 
 # Mappers
-def mapper_get_lines():
+def mapper_get_lines(path):
     """
     
     """
     res = []
-    with open("data/validation.txt", "r", encoding="utf8") as f:
+    with open("data/" + path + ".txt", "r", encoding="utf8") as f:
         lines = f.readlines()
 
         for line in lines:
