@@ -30,3 +30,5 @@ def train():
         combi_list = filter_training(updated_text)
 
         train_matrix(combi_list, x)
+
+#train()
