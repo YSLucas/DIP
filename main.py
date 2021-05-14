@@ -8,7 +8,7 @@ import numpy
 
 def main():
     """
-    Main function
+    Main function. Uses outputs from a function as inputs to the next.
     """
 
     lines_list = mapper_get_lines("validation")

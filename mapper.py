@@ -3,7 +3,10 @@
 # Mappers
 def mapper_get_lines(path):
     """
+    Converts .txt to strings and puts it in a list
     
+    @param path: path to text data
+    @return    : list
     """
     res = []
     with open("data/" + path + ".txt", "r", encoding="utf8") as f:

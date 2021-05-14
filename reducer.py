@@ -4,6 +4,10 @@ import numpy
 # Reduce
 def reducer(c):
     """
+    When a combination occurs, update matrix in the right place
+    
+    @param c: list of combinations found in text
+    @return : matrix with combination frequencies
     """
     matrix = numpy.zeros((28, 28))
     for combination in c:
@@ -20,6 +24,9 @@ def reducer(c):
 def reducer_chance_matrix(m):
     """
     Convert a frequence matrix to a chance matrix
+    
+    @param m: frequencie matrix
+    @return : chance matrix
     """
     total = numpy.sum(m) # total letter combinations analysed
     
@@ -36,6 +43,7 @@ def reducer_chance_matrix(m):
 def reducer_final(eng_m, nl_m, c):
     """
     method: https://stackoverflow.com/a/18197422
+    
     @param eng_m: english trained matrix numpy array
     @param nl_m: dutch trained matrix numpy array
     @param c: list van combinaties die voorkomen per zin

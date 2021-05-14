@@ -26,8 +26,9 @@ def filter_training(txt):
 def filter_validation(txt):
     """
     Get all 2 letter combinations in text.
+    
     Different funtion was made to return in correct form
-
+    
     @param  txt: tekst waat combinaties uit gehaald worden
     @return    : lijst met combinaties in tekst
     """

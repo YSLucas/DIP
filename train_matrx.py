@@ -11,6 +11,10 @@ LANGUAGES = ['eng', 'nl']
 
 def train_matrix(txt, lang):
     """
+    Calls right functions to make and save a chance matrix
+    
+    @param  txt: list of combinations found in text
+    @param lang: Language configuration
     """
     matrix = numpy.zeros((28, 28))
     for line in txt:
@@ -22,6 +26,9 @@ def train_matrix(txt, lang):
     numpy.save("trained_matrix/" + lang + "_trained", chance_m)
 
 def train():
+    """
+    Train function. Uses outputs from a function as inputs to the next to produce two trained matrices.
+    """
 
     for x in LANGUAGES:
         path = "train_" + x + "/train_data"
