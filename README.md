@@ -16,7 +16,8 @@ Notebook: <br>
 Python files: <br>
 `Run main.py` <br>
 
-De matrices zijn al getrained. Om zelf de martrices te trainen: un-comment line 41 in het bestand `train_matrx` 
+De matrices zijn al getrained. Om zelf de martrices te trainen: un-comment line 41 in het bestand `train_matrix` 
+(Er moet een map zijn met de naam 'train_matrix', anders krijgt u een error)
 
 ## Demo
 Visuele demonstraties van de functies zijn te zien in `DIP_opdrach_2.html`
